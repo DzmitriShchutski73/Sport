@@ -3,7 +3,7 @@
 :root {
   --bg: #0f1114;
   --bg-elevated: #171a1f;
-  --bg-soft: #1e232b;
+  --bg-soft: #395581;
   --text: #f2efe8;
   --muted: #9aa3ae;
   --gold: #c9a227;
@@ -14,6 +14,8 @@
   --radius: 2px;
   --container: 1180px;
   --header-h: 72px;
+  --accent-neon:#39FF14;
+  --accent-neon-hover:#22C55E;
 }
 
 @theme inline {
@@ -123,7 +125,7 @@ img {
   z-index: 50;
   height: var(--header-h);
   backdrop-filter: blur(12px);
-  background: rgba(15, 17, 20, 0.85);
+  background: var(--bg-soft);
   border-bottom: 1px solid var(--line);
 }
 
@@ -522,7 +524,7 @@ textarea:focus {
   margin-top: 3rem;
   border-top: 1px solid var(--line);
   padding: 3rem 0 1.5rem;
-  background: #0b0d10;
+  background: var(--bg-soft);
 }
 
 .footer-grid {

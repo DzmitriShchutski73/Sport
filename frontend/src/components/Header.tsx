@@ -68,9 +68,9 @@ export function Header() {
               Войти
             </Link>
           )}
-          <Link href="/contacts#lead" className="btn btn-sm" onClick={() => setOpen(false)}>
+          {/* <Link href="/contacts#lead" className="btn btn-sm" onClick={() => setOpen(false)}>
             Заявка
-          </Link>
+          </Link> */}
         </nav>
       </div>
     </header>

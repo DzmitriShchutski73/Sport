@@ -28,7 +28,7 @@ export default async function HomePage() {
             alt="Тренажёрный зал"
           />
         </div>
-        <div className="container hero-content">
+        {/* <div className="container hero-content">
           <p className="eyebrow">GoldGym · Минск</p>
           <h1>Профессиональное фитнес-оборудование</h1>
           <p>
@@ -36,6 +36,22 @@ export default async function HomePage() {
             поставка и сервис для клубов, отелей и частных пространств Беларуси.
           </p>
           <div className="hero-actions">
+            <Link href="/catalog" className="btn">
+              Смотреть каталог
+            </Link>
+            <Link href="/contacts#lead" className="btn btn-ghost">
+              Получить КП
+            </Link>
+          </div>
+        </div> */}
+        <div className="container hero-content flex flex-col items-center text-center justify-center">
+          <p className="eyebrow">GoldGym • Минск</p>
+          <h1 className="text-center">Профессиональное фитнес-оборудование</h1>
+          <p className="text-center max-w-2xl mx-auto">
+            Комплектация залов под ключ: подбор тренажеров, дизайн-проект,
+            доставка и сервис для клубов, отелей и частных пространств Беларуси.
+          </p>
+          <div className="hero-actions flex justify-center gap-4">
             <Link href="/catalog" className="btn">
               Смотреть каталог
             </Link>

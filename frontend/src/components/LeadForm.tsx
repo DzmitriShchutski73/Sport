@@ -2,18 +2,22 @@
 
 import { FormEvent, useState } from "react";
 import { createLead } from "@/lib/api";
+import { useAuth } from "@/components/AuthProvider";
 
 type Props = {
   leadType?: string;
   title?: string;
   subtitle?: string;
+  onSuccess?: () => void;
 };
 
 export function LeadForm({
   leadType = "catalog",
   title = "Оставьте заявку",
   subtitle = "Пришлём каталог и коммерческое предложение.",
+  onSuccess,
 }: Props) {
+  const { user, token } = useAuth();
   const [status, setStatus] = useState<"idle" | "loading" | "ok" | "error">("idle");
   const [message, setMessage] = useState("");
 
@@ -23,17 +27,25 @@ export function LeadForm({
     const data = new FormData(form);
     setStatus("loading");
     try {
-      const res = await createLead({
-        lead_type: leadType,
-        name: String(data.get("name") || ""),
-        phone: String(data.get("phone") || ""),
-        email: String(data.get("email") || ""),
-        company: String(data.get("company") || ""),
-        message: String(data.get("message") || ""),
-      });
-      setMessage(res.message);
+      const res = await createLead(
+        {
+          lead_type: leadType,
+          name: String(data.get("name") || user?.name || ""),
+          phone: String(data.get("phone") || user?.phone || ""),
+          email: String(data.get("email") || user?.email || ""),
+          company: String(data.get("company") || ""),
+          message: String(data.get("message") || ""),
+        },
+        token
+      );
+      setMessage(
+        user
+          ? `${res.message} Заявка сохранена в личном кабинете.`
+          : res.message
+      );
       setStatus("ok");
       form.reset();
+      onSuccess?.();
     } catch (err) {
       setMessage(err instanceof Error ? err.message : "Ошибка отправки");
       setStatus("error");
@@ -44,21 +56,42 @@ export function LeadForm({
     <div className="lead-form" id="lead">
       <h3 className="font-display">{title}</h3>
       <p className="muted">{subtitle}</p>
+      {!user && (
+        <p className="muted" style={{ fontSize: "0.9rem" }}>
+          Чтобы видеть историю заявок —{" "}
+          <a href="/register">зарегистрируйтесь</a> или <a href="/login">войдите</a>.
+        </p>
+      )}
       <form onSubmit={onSubmit}>
         <div className="form-row">
           <label>
             Имя *
-            <input name="name" required placeholder="Как к вам обращаться" />
+            <input
+              name="name"
+              required
+              placeholder="Как к вам обращаться"
+              defaultValue={user?.name || ""}
+            />
           </label>
           <label>
             Телефон *
-            <input name="phone" required placeholder="+375 (29) ..." />
+            <input
+              name="phone"
+              required
+              placeholder="+375 (29) ..."
+              defaultValue={user?.phone || ""}
+            />
           </label>
         </div>
         <div className="form-row">
           <label>
             Email
-            <input name="email" type="email" placeholder="you@company.by" />
+            <input
+              name="email"
+              type="email"
+              placeholder="you@company.by"
+              defaultValue={user?.email || ""}
+            />
           </label>
           <label>
             Компания

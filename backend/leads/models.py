@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 
@@ -8,6 +9,14 @@ class Lead(models.Model):
         SERVICE = "service", "Сервис / гарантия"
         B2B = "b2b", "Для клубов"
 
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="leads",
+        verbose_name="Клиент",
+    )
     lead_type = models.CharField(
         "Тип", max_length=20, choices=LeadType.choices, default=LeadType.CATALOG
     )

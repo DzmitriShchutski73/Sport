@@ -125,17 +125,23 @@ export function getProjects(params?: { is_3d?: boolean }) {
   ).then(normalizeList);
 }
 
-export async function createLead(data: {
-  lead_type: string;
-  name: string;
-  phone: string;
-  email?: string;
-  company?: string;
-  message?: string;
-}) {
+export async function createLead(
+  data: {
+    lead_type: string;
+    name: string;
+    phone: string;
+    email?: string;
+    company?: string;
+    message?: string;
+  },
+  token?: string | null
+) {
+  const headers: Record<string, string> = { "Content-Type": "application/json" };
+  if (token) headers.Authorization = `Token ${token}`;
+
   const res = await fetch(`${API_BASE}/leads/`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers,
     body: JSON.stringify(data),
   });
   const json = await res.json();

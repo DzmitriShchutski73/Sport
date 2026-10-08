@@ -8,7 +8,7 @@ from catalog.views import (
     ProductViewSet,
     ProjectViewSet,
 )
-from leads.views import LeadCreateView
+from leads.views import LeadCreateView, MyLeadsListView
 
 router = DefaultRouter()
 router.register("categories", CategoryViewSet, basename="category")
@@ -19,5 +19,7 @@ urlpatterns = [
     path("home/", HomePayloadView.as_view(), name="home"),
     path("certificates/", CertificateListView.as_view(), name="certificates"),
     path("leads/", LeadCreateView.as_view(), name="leads"),
+    path("leads/mine/", MyLeadsListView.as_view(), name="my-leads"),
+    path("auth/", include("accounts.urls")),
     path("", include(router.urls)),
 ]

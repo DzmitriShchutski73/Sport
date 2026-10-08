@@ -5,7 +5,8 @@ from .models import Lead
 
 @admin.register(Lead)
 class LeadAdmin(admin.ModelAdmin):
-    list_display = ("name", "phone", "lead_type", "is_processed", "created_at")
+    list_display = ("name", "phone", "lead_type", "user", "is_processed", "created_at")
     list_filter = ("lead_type", "is_processed")
-    search_fields = ("name", "phone", "email", "company")
+    search_fields = ("name", "phone", "email", "company", "user__email")
     readonly_fields = ("created_at",)
+    raw_id_fields = ("user",)

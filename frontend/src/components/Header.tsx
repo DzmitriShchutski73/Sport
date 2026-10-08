@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "@/components/AuthProvider";
 
 const NAV = [
   { href: "/catalog", label: "Каталог" },
@@ -16,6 +17,7 @@ const NAV = [
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const { user, loading } = useAuth();
 
   return (
     <header className="site-header">
@@ -49,6 +51,23 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          {!loading && user ? (
+            <Link
+              href="/account"
+              className={pathname.startsWith("/account") ? "active" : ""}
+              onClick={() => setOpen(false)}
+            >
+              Кабинет
+            </Link>
+          ) : (
+            <Link
+              href="/login"
+              className={pathname.startsWith("/login") || pathname.startsWith("/register") ? "active" : ""}
+              onClick={() => setOpen(false)}
+            >
+              Войти
+            </Link>
+          )}
           <Link href="/contacts#lead" className="btn btn-sm" onClick={() => setOpen(false)}>
             Заявка
           </Link>

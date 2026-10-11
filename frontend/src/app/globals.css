@@ -16,6 +16,8 @@
   --header-h: 72px;
   --accent-neon:#39FF14;
   --accent-neon-hover:#22C55E;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Oswald", "Impact", "Arial Black", sans-serif;
 }
 
 @theme inline {

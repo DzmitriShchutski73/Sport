@@ -4,7 +4,7 @@ from .models import Category, Certificate, Product, Project
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    products_count = serializers.IntegerField(source="products.count", read_only=True)
+    products_count = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = Category

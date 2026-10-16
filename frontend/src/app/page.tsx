@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { LeadForm } from "@/components/LeadForm";
 import { ProductCard } from "@/components/ProductCard";
@@ -22,10 +23,13 @@ export default async function HomePage() {
     <>
       <section className="hero">
         <div className="hero-media">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1800&q=80"
             alt="Тренажёрный зал"
+            width={1800}
+            height={1200}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ width: "100%", height: "auto" }}
           />
         </div>
         {/* <div className="container hero-content">
@@ -76,8 +80,14 @@ export default async function HomePage() {
           <div className="grid-cats">
             {data.categories.map((cat) => (
               <Link key={cat.id} href={`/catalog/${cat.slug}`} className="cat-card">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={cat.image_url} alt={cat.name} />
+                <Image
+                  src={cat.image_url}
+                  alt={cat.name}
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ width: "100%", height: "auto" }}
+                />
                 <div className="overlay">
                   <h3>{cat.name}</h3>
                   <span className="muted">{cat.products_count} позиций</span>
@@ -118,8 +128,14 @@ export default async function HomePage() {
           <div className="grid-projects">
             {data.projects.map((project) => (
               <article key={project.id} className="project-card">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image_url} alt={project.title} />
+                <Image
+                  src={project.image_url}
+                  alt={project.title}
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ width: "100%", height: "auto" }}
+                />
                 <div className="project-body">
                   <span className="eyebrow">{project.location}</span>
                   <h3>{project.title}</h3>
@@ -145,8 +161,14 @@ export default async function HomePage() {
           <div className="grid-projects">
             {data.projects_3d.map((project) => (
               <article key={project.id} className="project-card">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image_url} alt={project.title} />
+                <Image
+                  src={project.image_url}
+                  alt={project.title}
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ width: "100%", height: "auto" }}
+                />
                 <div className="project-body">
                   <span className="eyebrow">3D</span>
                   <h3>{project.title}</h3>

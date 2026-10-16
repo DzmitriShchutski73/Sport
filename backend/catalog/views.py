@@ -1,3 +1,5 @@
+from django.db.models import Count
+
 from rest_framework import generics, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,7 +15,7 @@ from .serializers import (
 
 
 class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    queryset = Category.objects.all()
+    queryset = Category.objects.annotate(products_count=Count("products"))
     serializer_class = CategorySerializer
     lookup_field = "slug"
 
@@ -60,7 +62,8 @@ class HomePayloadView(APIView):
     """Сводные данные для главной страницы."""
 
     def get(self, request):
-        categories = Category.objects.all()[:8]
+        # Оптимизированные запросы с select_related и prefetch_related
+        categories = Category.objects.annotate(products_count=Count("products")).select_related().all()[:8]
         featured = Product.objects.select_related("category").filter(is_featured=True)[:6]
         projects = Project.objects.filter(is_3d=False)[:4]
         projects_3d = Project.objects.filter(is_3d=True)[:4]

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { LeadForm } from "@/components/LeadForm";
@@ -40,8 +41,14 @@ export default async function ProductPage({ params }: Props) {
       </section>
       <div className="container product-detail">
         <div className="product-detail-media">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={product.image_url} alt={product.name} />
+          <Image
+            src={product.image_url}
+            alt={product.name}
+            width={800}
+            height={600}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            style={{ width: "100%", height: "auto" }}
+          />
         </div>
         <div>
           <p className="eyebrow">{product.brand}</p>

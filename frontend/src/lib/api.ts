@@ -79,7 +79,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
       "Content-Type": "application/json",
       ...(init?.headers || {}),
     },
-    next: { revalidate: 30 },
+    next: { revalidate: 60 },
   });
   if (!res.ok) {
     throw new Error(`API ${path}: ${res.status}`);

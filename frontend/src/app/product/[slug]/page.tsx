@@ -48,6 +48,7 @@ export default async function ProductPage({ params }: Props) {
             height={600}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             style={{ width: "100%", height: "auto" }}
+            quality={80}
           />
         </div>
         <div>

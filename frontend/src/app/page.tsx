@@ -30,6 +30,8 @@ export default async function HomePage() {
             height={1200}
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             style={{ width: "100%", height: "auto" }}
+            priority
+            quality={85}
           />
         </div>
         {/* <div className="container hero-content">
@@ -87,6 +89,7 @@ export default async function HomePage() {
                   height={300}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ width: "100%", height: "auto" }}
+                  quality={75}
                 />
                 <div className="overlay">
                   <h3>{cat.name}</h3>
@@ -135,6 +138,7 @@ export default async function HomePage() {
                   height={300}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ width: "100%", height: "auto" }}
+                  quality={75}
                 />
                 <div className="project-body">
                   <span className="eyebrow">{project.location}</span>
@@ -168,6 +172,7 @@ export default async function HomePage() {
                   height={300}
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   style={{ width: "100%", height: "auto" }}
+                  quality={75}
                 />
                 <div className="project-body">
                   <span className="eyebrow">3D</span>

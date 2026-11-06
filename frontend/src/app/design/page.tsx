@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LeadForm } from "@/components/LeadForm";
 import { getProjects } from "@/lib/api";
 
@@ -26,8 +27,15 @@ export default async function DesignPage() {
           <div className="grid-projects" style={{ marginBottom: "3rem" }}>
             {projects.map((project) => (
               <article key={project.id} className="project-card">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={project.image_url} alt={project.title} />
+                <Image
+                  src={project.image_url}
+                  alt={project.title}
+                  width={400}
+                  height={300}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  style={{ width: "100%", height: "auto" }}
+                  quality={75}
+                />
                 <div className="project-body">
                   <span className="eyebrow">3D</span>
                   <h3>{project.title}</h3>

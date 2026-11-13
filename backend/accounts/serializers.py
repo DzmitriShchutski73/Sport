@@ -17,10 +17,7 @@ class RegisterSerializer(serializers.Serializer):
         return value
 
     def validate_email(self, value: str) -> str:
-        email = value.strip().lower()
-        if User.objects.filter(email__iexact=email).exists():
-            raise serializers.ValidationError("Этот email уже используется.")
-        return email
+        return value.strip().lower()
 
     @staticmethod
     def _generate_username(email: str) -> str:
